@@ -26,8 +26,11 @@ public class TodoItemDataLoader implements CommandLineRunner{
             TodoItem todoItem1 = new TodoItem("get the milk!", "Medium");
             TodoItem todoItem2 = new TodoItem("Plant the water", "High");
 
+            TodoItem todoItem3 = new TodoItem("Solve the issue", "Low");
+
             todoItemRepository.save(todoItem1);
             todoItemRepository.save(todoItem2);
+            todoItemRepository.save(todoItem3);
         }
 
         logger.info("Number of TodoItems: {}", todoItemRepository.count());
