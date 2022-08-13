@@ -13,14 +13,18 @@ import com.syedomee.springtodo.repositories.TodoItemRepository;
 
 @Controller
 public class TodoFormController {
-    private final Logger logger = LoggerFactory.getLogger(TodoFormController.class);
-
     @Autowired
     private TodoItemRepository todoItemRepository;
 
+    @GetMapping("/create-todo")
+    public String showCreateForm(TodoItem todoItem) {
+        return "add-todo-item";
+    }
+
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
-        TodoItem todoItem = todoItemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("TodoItem: " + id + " not found"));
+        TodoItem todoItem = todoItemRepository.findById(id).
+        orElseThrow(() -> new IllegalArgumentException("TodoItem: " + id + " not found"));
         
         model.addAttribute("todo", todoItem);
         return "update-todo-item";
@@ -28,7 +32,8 @@ public class TodoFormController {
 
     @GetMapping("/delete/{id}")
     public String deleteTodoItem(@PathVariable("id") Long id, Model model) {
-        TodoItem todoItem = todoItemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("TodoItem: " + id + " not found"));
+        TodoItem todoItem = todoItemRepository.findById(id).
+        orElseThrow(() -> new IllegalArgumentException("TodoItem: " + id + " not found"));
         
         todoItemRepository.delete(todoItem);
         return "redirect:/";
