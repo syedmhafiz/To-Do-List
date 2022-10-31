@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
+//nothing but checking the git status
+
 @Entity
 @Table(name = "todo_item")
 public class TodoItem {
